@@ -112,24 +112,34 @@ rm -f gdal-$GDAL_VERSION.tar.gz*
 # don't auto-remove otherwise all libs are gone (not only headers) :
 apt-get purge -y \
     libarmadillo-dev \
+    libarpack2-dev \
+    libblas-dev \
+    libbison-dev \
+    liblapack-dev \
     libcfitsio-dev \
     libcurl4-gnutls-dev \
     libdap-dev \
     libepsilon-dev \
+    libfl-dev \
     libfreexl-dev \
     libgeos-dev \
     libhdf4-alt-dev \
     libjasper-dev \
     libkml-dev \
     liblcms2-dev \
+    libltdl-dev \
     liblzma-dev \
     libmysqlclient-dev \
+    libnetcdf-dev \
     libpcre3-dev \
     libpodofo-dev \
     libpq-dev \
     libspatialite-dev \
+    liburiparser-dev \
     libwebp-dev \
     libxerces-c-dev \
+    libxml2-dev \
+    linux-libc-dev \
     php5-dev \
     python-dev \
     unixodbc-dev
