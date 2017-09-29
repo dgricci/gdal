@@ -1,6 +1,6 @@
 % GDAL - Geospatial Data Abstraction Library
 % Didier Richard
-% 12/03/2017
+% 29/09/2017
 
 ---
 
@@ -9,6 +9,7 @@ revision:
     - 0.0.2 : 16/02/2017
     - 0.0.3 : 05/03/2017
     - 0.0.4 : 12/03/2017
+    - 0.0.5 : 29/09/2017
 
 ---
 
@@ -33,7 +34,7 @@ $ docker tag dgricci/gdal:$(< VERSION) dgricci/gdal:latest
 
 ```bash
 $ docker build \
-    --build-arg GDAL_VERSION=2.1.3 --build-arg GDAL_DOWNLOAD_URL=http://download.osgeo.org/gdal/2.1.3/gdal-2.1.3.zip \
+    --build-arg GDAL_VERSION=2.2.4 --build-arg GDAL_DOWNLOAD_URL=http://download.osgeo.org/gdal/2.2.4/gdal-2.2.4.zip \
     -t dgricci/gdal:$(< VERSION) .
 $ docker tag dgricci/gdal:$(< VERSION) dgricci/gdal:latest
 ```
@@ -44,9 +45,10 @@ See `dgricci/jessie` README for handling permissions with dockers volumes.
 
 ```bash
 $ docker run --rm dgricci/gdal
-GDAL 2.1.3, released 2017/20/01
+GDAL 2.2.2, released 2017/09/15
 Supported Formats:
   VRT -raster- (rw+v): Virtual Raster
+  DERIVED -raster- (ro): Derived datasets using VRT pixel functions
   GTiff -raster- (rw+vs): GeoTIFF
   NITF -raster- (rw+vs): National Imagery Transmission Format
   RPFTOC -raster- (rovs): Raster Product Format TOC format
@@ -88,7 +90,7 @@ Supported Formats:
   netCDF -raster,vector- (rw+s): Network Common Data Format
   HDF4 -raster- (ros): Hierarchical Data Format Release 4
   HDF4Image -raster- (rw+): HDF4 Dataset
-  ISIS3 -raster- (rov): USGS Astrogeology ISIS cube (Version 3)
+  ISIS3 -raster- (rw+v): USGS Astrogeology ISIS cube (Version 3)
   ISIS2 -raster- (rw+v): USGS Astrogeology ISIS cube (Version 2)
   PDS -raster- (rov): NASA Planetary Data System
   VICAR -raster- (rov): MIPL VICAR file
@@ -97,7 +99,8 @@ Supported Formats:
   L1B -raster- (rovs): NOAA Polar Orbiter Level 1b Data Set
   FIT -raster- (rwv): FIT Image
   GRIB -raster- (rov): GRIdded Binary (.grb)
-  JPEG2000 -raster,vector- (rwv): JPEG-2000 part 1 (ISO/IEC 15444-1), based on Jasper library
+  JPEG2000 -raster,vector- (rwv): JPEG-2000 part 1 (ISO/IEC 15444-1), based on
+Jasper library
   RMF -raster- (rw+v): Raster Matrix Format
   WCS -raster- (rovs): OGC Web Coverage Service
   WMS -raster- (rwvs): OGC Web Map Service
@@ -148,6 +151,7 @@ Supported Formats:
   SNODAS -raster- (rov): Snow Data Assimilation System
   KRO -raster- (rw+v): KOLOR Raw
   ROI_PAC -raster- (rw+v): ROI_PAC raster
+  RRASTER -raster- (rov): R Raster
   ENVI -raster- (rw+v): ENVI .hdr Labelled
   EHdr -raster- (rw+v): ESRI .hdr Labelled
   ISCE -raster- (rw+v): ISCE raster
@@ -155,7 +159,10 @@ Supported Formats:
   RIK -raster- (rov): Swedish Grid RIK (.rik)
   USGSDEM -raster- (rwv): USGS Optional ASCII DEM (and CDED)
   GXF -raster- (ro): GeoSoft Grid Exchange Format
-  NWT_GRD -raster- (rov): Northwood Numeric Grid Format .grd/.tab
+  BAG -raster- (ro): Bathymetry Attributed Grid
+  HDF5 -raster- (ros): Hierarchical Data Format Release 5
+  HDF5Image -raster- (ro): HDF5 Dataset
+  NWT_GRD -raster- (rw+v): Northwood Numeric Grid Format .grd/.tab
   NWT_GRC -raster- (rov): Northwood Classified Grid Format .grc/.tab
   ADRG -raster- (rw+vs): ARC Digitized Raster Graphics
   SRP -raster- (rovs): Standard Raster Product (ASRP/USRP)
@@ -171,13 +178,16 @@ Supported Formats:
   ZMap -raster- (rwv): ZMap Plus Grid
   NGSGEOID -raster- (rov): NOAA NGS Geoid Height Grids
   IRIS -raster- (rov): IRIS data (.PPI, .CAPPi etc)
+  PRF -raster- (rov): Racurs PHOTOMOD PRF
   GPKG -raster,vector- (rw+vs): GeoPackage
+  CAD -raster,vector- (rovs): AutoCAD Driver
   PLSCENES -raster,vector- (ro): Planet Labs Scenes API
   HTTP -raster,vector- (ro): HTTP Fetching Wrapper
 Supported Formats:
   PCIDSK -raster,vector- (rw+v): PCIDSK Database File
   netCDF -raster,vector- (rw+s): Network Common Data Format
-  JPEG2000 -raster,vector- (rwv): JPEG-2000 part 1 (ISO/IEC 15444-1), based on Jasper library
+  JPEG2000 -raster,vector- (rwv): JPEG-2000 part 1 (ISO/IEC 15444-1), based on
+Jasper library
   PDF -raster,vector- (rw+s): Geospatial PDF
   ESRI Shapefile -vector- (rw+v): ESRI Shapefile
   MapInfo File -vector- (rw+v): MapInfo File
@@ -211,6 +221,7 @@ Supported Formats:
   OpenFileGDB -vector- (rov): ESRI FileGDB
   XPlane -vector- (rov): X-Plane/Flightgear aeronautical data
   DXF -vector- (rw+v): AutoCAD DXF
+  CAD -raster,vector- (rovs): AutoCAD Driver
   Geoconcept -vector- (rw+): Geoconcept
   GeoRSS -vector- (rw+v): GeoRSS
   GPSTrackMaker -vector- (rw+v): GPSTrackMaker
@@ -247,6 +258,8 @@ Supported Formats:
   PLSCENES -raster,vector- (ro): Planet Labs Scenes API
   CSW -vector- (ro): OGC CSW (Catalog  Service for the Web)
   VDV -vector- (rw+v): VDV-451/VDV-452/INTREST Data Format
+  GMLAS -vector- (rwv): Geography Markup Language (GML) driven by application
+schemas
   TIGER -vector- (rw+v): U.S. Census TIGER/Line
   AVCBin -vector- (ro): Arc/Info Binary Coverage
   AVCE00 -vector- (ro): Arc/Info E00 (ASCII) Coverage
