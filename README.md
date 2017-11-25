@@ -1,15 +1,16 @@
 % GDAL - Geospatial Data Abstraction Library
 % Didier Richard
-% 29/09/2017
+% 25/11/2017
 
 ---
 
 revision:
-    - 0.0.1 : 08/02/2017
-    - 0.0.2 : 16/02/2017
-    - 0.0.3 : 05/03/2017
-    - 0.0.4 : 12/03/2017
-    - 0.0.5 : 29/09/2017
+    - 0.0.1 : 08/02/2017  
+    - 0.0.2 : 16/02/2017  
+    - 0.0.3 : 05/03/2017  
+    - 0.0.4 : 12/03/2017  
+    - 0.0.5 : 29/09/2017  
+    - 0.0.6 : 25/11/2017  
 
 ---
 
@@ -34,7 +35,7 @@ $ docker tag dgricci/gdal:$(< VERSION) dgricci/gdal:latest
 
 ```bash
 $ docker build \
-    --build-arg GDAL_VERSION=2.2.4 --build-arg GDAL_DOWNLOAD_URL=http://download.osgeo.org/gdal/2.2.4/gdal-2.2.4.zip \
+    --build-arg GDAL_VERSION=2.2.3 --build-arg GDAL_DOWNLOAD_URL=http://download.osgeo.org/gdal/2.2.3/gdal-2.2.3.zip \
     -t dgricci/gdal:$(< VERSION) .
 $ docker tag dgricci/gdal:$(< VERSION) dgricci/gdal:latest
 ```
@@ -44,8 +45,8 @@ $ docker tag dgricci/gdal:$(< VERSION) dgricci/gdal:latest
 See `dgricci/jessie` README for handling permissions with dockers volumes.
 
 ```bash
-$ docker run --rm dgricci/gdal
-GDAL 2.2.2, released 2017/09/15
+$ docker run --rm dgricci/gdal:$(< VERSION)
+GDAL 2.2.3, released 2017/11/20
 Supported Formats:
   VRT -raster- (rw+v): Virtual Raster
   DERIVED -raster- (ro): Derived datasets using VRT pixel functions
@@ -99,8 +100,7 @@ Supported Formats:
   L1B -raster- (rovs): NOAA Polar Orbiter Level 1b Data Set
   FIT -raster- (rwv): FIT Image
   GRIB -raster- (rov): GRIdded Binary (.grb)
-  JPEG2000 -raster,vector- (rwv): JPEG-2000 part 1 (ISO/IEC 15444-1), based on
-Jasper library
+  JPEG2000 -raster,vector- (rwv): JPEG-2000 part 1 (ISO/IEC 15444-1), based on Jasper library
   RMF -raster- (rw+v): Raster Matrix Format
   WCS -raster- (rovs): OGC Web Coverage Service
   WMS -raster- (rwvs): OGC Web Map Service
@@ -186,8 +186,7 @@ Jasper library
 Supported Formats:
   PCIDSK -raster,vector- (rw+v): PCIDSK Database File
   netCDF -raster,vector- (rw+s): Network Common Data Format
-  JPEG2000 -raster,vector- (rwv): JPEG-2000 part 1 (ISO/IEC 15444-1), based on
-Jasper library
+  JPEG2000 -raster,vector- (rwv): JPEG-2000 part 1 (ISO/IEC 15444-1), based on Jasper library
   PDF -raster,vector- (rw+s): Geospatial PDF
   ESRI Shapefile -vector- (rw+v): ESRI Shapefile
   MapInfo File -vector- (rw+v): MapInfo File
@@ -258,8 +257,7 @@ Jasper library
   PLSCENES -raster,vector- (ro): Planet Labs Scenes API
   CSW -vector- (ro): OGC CSW (Catalog  Service for the Web)
   VDV -vector- (rw+v): VDV-451/VDV-452/INTREST Data Format
-  GMLAS -vector- (rwv): Geography Markup Language (GML) driven by application
-schemas
+  GMLAS -vector- (rwv): Geography Markup Language (GML) driven by application schemas
   TIGER -vector- (rw+v): U.S. Census TIGER/Line
   AVCBin -vector- (ro): Arc/Info Binary Coverage
   AVCE00 -vector- (ro): Arc/Info E00 (ASCII) Coverage
